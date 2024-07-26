@@ -12,34 +12,31 @@ def calculate_profit(actions):
     return sum(action['price'] * (action['profit'] / 100) for action in actions)
 
 
-
-def greedy_invest(actions, max_budget):
+def greedy_invest(actions):
     valid_actions = [action for action in actions if action['price'] > 0]
 
     sorted_actions = sorted(
         valid_actions, key=lambda x: x['profit'], reverse=True)
-
+    max_budget = 500
     selected_actions = []
-    current_budget = max_budget
 
     for action in sorted_actions:
-        if action['price'] <= current_budget:
+        if action['price'] <= max_budget:
             selected_actions.append(action)
-            current_budget -= action['price']
+            max_budget -= action['price']
 
     return selected_actions
 
 
 def main():
     file_paths = ['actions.csv','dataset1_Python+P7.csv', 'dataset2_Python+P7.csv']
-    max_budget = 500
 
     for file_path in file_paths:
         print(f"Traitement du fichier : {file_path}")
 
         start_time = time()
         actions = read_data(file_path)
-        best_combination = greedy_invest(actions, max_budget)
+        best_combination = greedy_invest(actions)
         end_time = time()
 
         print("Meilleure combinaison d'actions pour maximiser le profit :")
