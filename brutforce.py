@@ -34,12 +34,14 @@ def find_best_combination(actions, max_budget):
     return best_combination, best_profit
 
 def main():
-    start_time = time.time() 
-
     actions = read_actions('actions.csv')
     max_budget = 500
 
+    start_time = time.time() 
+    
     best_combo, best_profit = find_best_combination(actions, max_budget)
+
+    end_time = time.time()  
 
     print("Meilleure combinaison d'actions :")
     for action in best_combo:
@@ -48,8 +50,6 @@ def main():
     total_cost = sum(action['cost'] for action in best_combo)
     print(f"\nCoût total: {total_cost:.2f}€")
     print(f"Profit total: {best_profit:.2f}€")
-
-    end_time = time.time()  
     execution_time = end_time - start_time
     print(f"\nTemps d'exécution: {execution_time:.2f} secondes")
 
