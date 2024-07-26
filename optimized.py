@@ -32,7 +32,7 @@ def greedy_invest(actions, max_budget):
 
 def main():
     file_paths = ['actions.csv','dataset1_Python+P7.csv', 'dataset2_Python+P7.csv']
-    max_budget = 500.0
+    max_budget = 500
 
     for file_path in file_paths:
         print(f"Traitement du fichier : {file_path}")
@@ -44,8 +44,7 @@ def main():
 
         print("Meilleure combinaison d'actions pour maximiser le profit :")
         for action in best_combination:
-            print(f"{action['name']} - Coût: {action['price']
-                                              }€ - Bénéfice après 2 ans: {action['profit']}%")
+            print(f"{action['name']} - Coût: {action['price']}€ - Bénéfice après 2 ans: {action['profit']}%")
 
         total_profit = calculate_profit(best_combination)
         total_cost = sum(action['price'] for action in best_combination)
